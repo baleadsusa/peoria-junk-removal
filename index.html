@@ -656,22 +656,23 @@
         <div>
           <h3 class="font-heading font-600 text-white text-sm mb-3">Our Services</h3>
           <ul class="font-body text-sm space-y-1.5">
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Furniture Removal</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Appliance Removal</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Estate Cleanouts</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Yard Waste Removal</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Construction Debris</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Hot Tub Removal</a></li>
+            <li><a href="/furniture-removal.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Furniture Removal</a></li>
+            <li><a href="/appliance-removal.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Appliance Removal</a></li>
+            <li><a href="/estate-cleanouts.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Estate Cleanouts</a></li>
+            <li><a href="/yard-waste-removal.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Yard Waste Removal</a></li>
+            <li><a href="/construction-debris.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Construction Debris</a></li>
+            <li><a href="/hot-tub-removal.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Hot Tub Removal</a></li>
+            <li><a href="/commercial-cleanouts.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Commercial Cleanouts</a></li>
           </ul>
         </div>
         <div>
-          <h3 class="font-heading font-600 text-white text-sm mb-3">Service Area</h3>
-          <ul class="font-body text-sm space-y-1.5 columns-2">
-            <li>Peoria, IL</li>
-            <li>East Peoria, IL</li>
-            <li>Pekin, IL</li>
-            <li>Morton, IL</li>
-            <li>Washington, IL</li>
+          <h3 class="font-heading font-600 text-white text-sm mb-3">Service Areas</h3>
+          <ul class="font-body text-sm space-y-1.5">
+            <li><a href="/" class="hover:text-orange transition-colors duration-200 cursor-pointer">Peoria, IL</a></li>
+            <li><a href="/east-peoria.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">East Peoria, IL</a></li>
+            <li><a href="/pekin.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Pekin, IL</a></li>
+            <li><a href="/morton.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Morton, IL</a></li>
+            <li><a href="/washington.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Washington, IL</a></li>
             <li>Chillicothe, IL</li>
             <li>Bartonville, IL</li>
             <li>Dunlap, IL</li>
@@ -711,8 +712,8 @@
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          animateCounter(document.getElementById('stat-jobs'), 500, '+', 1200);
-          animateCounter(document.getElementById('stat-rating'), 4.9, ' ★', 1200);
+          animateCounter(document.getElementById('stat-jobs'), 500, '+', 2500);
+          animateCounter(document.getElementById('stat-rating'), 4.9, ' ★', 2500);
           statsObserver.disconnect();
         }
       });
