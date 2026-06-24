@@ -41,8 +41,8 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Open Sans', sans-serif; }
     h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .faq-answer.open { max-height: 300px; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding-top: 0 !important; padding-bottom: 0 !important; }
+    .faq-answer.open { max-height: 300px; padding-bottom: 1rem !important; }
     .faq-icon { transition: transform 0.3s ease; }
     .faq-icon.open { transform: rotate(45deg); }
     @keyframes pulse-ring {
