@@ -105,9 +105,44 @@
     }
     .phone-pulse { animation: pulse-ring 2.2s infinite; }
 
+    /* Scroll fade-in */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .fade-up-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-up-stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+    .fade-up-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+    .fade-up-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .fade-up-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+    .fade-up-stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+    .fade-up-stagger.visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+    .fade-up-stagger.visible > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+    .fade-up-stagger.visible > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
+
+    /* Card hover lift */
+    .card-lift {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-3px);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .phone-pulse { animation: none; }
       html { scroll-behavior: auto; }
+      .fade-up, .fade-up-stagger > * { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -132,7 +167,7 @@
   </nav>
 
   <!-- ── HERO ─────────────────────────────────────────────────── -->
-  <section id="hero" class="relative bg-navy pt-16 pb-20 overflow-hidden">
+  <section id="hero" class="relative bg-navy pt-24 pb-20 overflow-hidden">
     <!-- Subtle grid pattern -->
     <div class="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true">
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -206,13 +241,13 @@
   <!-- ── STATS STRIP ───────────────────────────────────────────── -->
   <section class="bg-orange py-5" aria-label="Key stats">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-white">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-white fade-up-stagger">
         <div>
-          <div class="font-heading font-800 text-3xl">500+</div>
+          <div id="stat-jobs" class="font-heading font-800 text-3xl">500+</div>
           <div class="font-body text-sm text-orange-100">Jobs Completed</div>
         </div>
         <div>
-          <div class="font-heading font-800 text-3xl">4.9 ★</div>
+          <div id="stat-rating" class="font-heading font-800 text-3xl">4.9 ★</div>
           <div class="font-body text-sm text-orange-100">Average Rating</div>
         </div>
         <div>
@@ -230,11 +265,11 @@
   <!-- ── HOW IT WORKS ──────────────────────────────────────────── -->
   <section class="py-16 bg-gray-50">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 fade-up">
         <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-3">How It Works</h2>
         <p class="font-body text-gray-600 text-lg">Junk removal in Peoria, IL doesn't get simpler than this.</p>
       </div>
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-3 gap-8 fade-up-stagger">
         <div class="text-center">
           <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -269,13 +304,13 @@
   <!-- ── SERVICES ──────────────────────────────────────────────── -->
   <section id="services" class="py-16 bg-white">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 fade-up">
         <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-3">What We Remove in Peoria, IL</h2>
         <p class="font-body text-gray-600 text-lg max-w-2xl mx-auto">From single items to full property cleanouts — if you need it gone, we haul it.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 fade-up-stagger">
 
-        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group">
+        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group card-lift">
           <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200">
             <svg class="w-6 h-6 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
           </div>
@@ -283,7 +318,7 @@
           <p class="font-body text-sm text-gray-500">Sofas, mattresses, tables, chairs, dressers — any size.</p>
         </div>
 
-        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group">
+        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group card-lift">
           <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200">
             <svg class="w-6 h-6 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11h-1V9h-2v2h-1V9H9v2H8V9H6v2H5c-1.1 0-2 .9-2 2v6h18v-6c0-1.1-.9-2-2-2zm-3 7H10v-3h4v3zm4-3h-2v-1H8v1H6v-3h12v3z"/></svg>
           </div>
@@ -291,7 +326,7 @@
           <p class="font-body text-sm text-gray-500">Refrigerators, washers, dryers, stoves, dishwashers.</p>
         </div>
 
-        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group">
+        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group card-lift">
           <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200">
             <svg class="w-6 h-6 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
           </div>
@@ -299,7 +334,7 @@
           <p class="font-body text-sm text-gray-500">Full house, garage, attic, and basement cleanouts.</p>
         </div>
 
-        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group">
+        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group card-lift">
           <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200">
             <svg class="w-6 h-6 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21H5.71c.51-1.2 1.06-2.38 1.78-3.4C9.92 20.14 13 21.5 13 21.5c0-2.03-.85-3.83-2.5-5-1-.73-2.17-1.22-3.5-1.5 1.36-2 3.5-3.17 6-3.5V13l4-5z"/></svg>
           </div>
@@ -307,7 +342,7 @@
           <p class="font-body text-sm text-gray-500">Brush, branches, leaves, lawn debris, old fencing.</p>
         </div>
 
-        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group">
+        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group card-lift">
           <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200">
             <svg class="w-6 h-6 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3H7c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
           </div>
@@ -315,7 +350,7 @@
           <p class="font-body text-sm text-gray-500">Drywall, lumber, tiles, concrete, renovation waste.</p>
         </div>
 
-        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group">
+        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group card-lift">
           <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200">
             <svg class="w-6 h-6 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2zM3 17h18v2H3zm16-8h-2V7H7v2H5V5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v4zm0 4H5v-3h14v3z"/></svg>
           </div>
@@ -323,7 +358,7 @@
           <p class="font-body text-sm text-gray-500">Full dismantling and removal of any hot tub or spa.</p>
         </div>
 
-        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group">
+        <div class="border border-gray-200 rounded-xl p-5 hover:border-orange hover:shadow-md transition-all duration-200 group card-lift">
           <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200">
             <svg class="w-6 h-6 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
           </div>
@@ -346,7 +381,7 @@
   <!-- ── TESTIMONIALS ──────────────────────────────────────────── -->
   <section id="reviews" class="py-16 bg-gray-50">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 fade-up">
         <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-2">What Peoria Customers Say</h2>
         <div class="flex justify-center items-center gap-1 mb-1" aria-label="4.9 out of 5 stars">
           <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -357,9 +392,9 @@
         </div>
         <p class="font-body text-gray-500 text-sm">Rated 4.9 out of 5 — 48 reviews</p>
       </div>
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-6 fade-up-stagger">
 
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-lift">
           <div class="flex gap-0.5 mb-3" aria-label="5 stars">
             <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -377,7 +412,7 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-lift">
           <div class="flex gap-0.5 mb-3" aria-label="5 stars">
             <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -395,7 +430,7 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-lift">
           <div class="flex gap-0.5 mb-3" aria-label="5 stars">
             <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -478,11 +513,11 @@
   <!-- ── FAQ ──────────────────────────────────────────────────── -->
   <section id="faq" class="py-16 bg-gray-50">
     <div class="max-w-3xl mx-auto px-4">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 fade-up">
         <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-3">Frequently Asked Questions</h2>
         <p class="font-body text-gray-600">Everything you need to know about junk removal in Peoria, IL.</p>
       </div>
-      <div class="space-y-3" id="faq-list">
+      <div class="space-y-3 fade-up" id="faq-list">
 
         <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
           <button class="faq-btn w-full flex items-center justify-between p-5 text-left cursor-pointer hover:bg-gray-50 transition-colors duration-200" aria-expanded="false">
@@ -566,7 +601,7 @@
             </svg>
             Call (309) 555-0100
           </a>
-          <p class="font-body text-gray-500 text-sm mt-3">Available 7 days a week, 7am – 7pm</p>
+          <p class="font-body text-gray-500 text-sm mt-3">Available 7 days a week</p>
         </div>
 
         <div class="flex items-center gap-3 my-6">
@@ -645,11 +680,46 @@
       </div>
       <hr class="border-navy-light mb-6">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs font-body text-blue-400">
-        <p>&copy; 2025 Peoria Junk Removal. All rights reserved. Serving Peoria, IL and surrounding areas.</p>
+        <p>&copy; 2026 Peoria Junk Removal. All rights reserved. Serving Peoria, IL and surrounding areas.</p>
         <p>Junk Removal Peoria IL &bull; Junk Hauling Peoria &bull; Furniture Removal Peoria IL</p>
       </div>
     </div>
   </footer>
+
+  <!-- ── SCROLL + COUNTER JS ──────────────────────────────────── -->
+  <script>
+    // Scroll fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up, .fade-up-stagger').forEach(el => observer.observe(el));
+
+    // Counter animation for stats strip
+    function animateCounter(el, target, suffix, duration) {
+      const isDecimal = target % 1 !== 0;
+      const start = performance.now();
+      const update = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const value = isDecimal ? (ease * target).toFixed(1) : Math.floor(ease * target);
+        el.textContent = value + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(document.getElementById('stat-jobs'), 500, '+', 1200);
+          animateCounter(document.getElementById('stat-rating'), 4.9, ' ★', 1200);
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    const statsSection = document.querySelector('[aria-label="Key stats"]');
+    if (statsSection) statsObserver.observe(statsSection);
+  </script>
 
   <!-- ── FAQ JS ─────────────────────────────────────────────────── -->
   <script>
