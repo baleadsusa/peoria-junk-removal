@@ -86,7 +86,7 @@
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
           Call (309) 555-0100
         </a>
-        <a href="/#quote" class="flex items-center justify-center bg-navy-light border-2 border-blue-400 text-white font-heading font-600 text-lg px-8 py-4 rounded-xl hover:border-orange hover:text-orange transition-colors duration-200 cursor-pointer">
+        <a href="#contact" class="flex items-center justify-center bg-navy-light border-2 border-blue-400 text-white font-heading font-600 text-lg px-8 py-4 rounded-xl hover:border-orange hover:text-orange transition-colors duration-200 cursor-pointer">
           Get a Free Quote
         </a>
       </div>
@@ -173,6 +173,54 @@
     </div>
   </section>
 
+
+  <!-- CONTACT FORM -->
+  <section id="contact" class="py-16 bg-navy">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-white mb-3">Get a Free Quote</h2>
+        <p class="font-body text-blue-200">No obligation. No credit card. Just a fast, free quote from your local Peoria junk removal team.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-xl">
+        <div class="text-center mb-6">
+          <a href="tel:3095550100" class="phone-pulse inline-flex items-center gap-3 bg-orange text-white font-heading font-700 text-2xl px-8 py-4 rounded-xl hover:bg-orange-dark transition-colors duration-200 cursor-pointer shadow-lg">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Call (309) 555-0100
+          </a>
+          <p class="font-body text-gray-500 text-sm mt-3">Available 7 days a week</p>
+        </div>
+        <div class="flex items-center gap-3 my-6">
+          <hr class="flex-1 border-gray-200">
+          <span class="font-body text-gray-400 text-sm">or send a message</span>
+          <hr class="flex-1 border-gray-200">
+        </div>
+        <form name="quote-request" method="POST" class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block font-body text-sm font-600 text-gray-700 mb-1.5">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="John Smith" class="w-full border border-gray-300 rounded-lg px-4 py-3 font-body text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent transition-all duration-200">
+            </div>
+            <div>
+              <label for="phone" class="block font-body text-sm font-600 text-gray-700 mb-1.5">Phone Number</label>
+              <input type="tel" id="phone" name="phone" required placeholder="(309) 000-0000" class="w-full border border-gray-300 rounded-lg px-4 py-3 font-body text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent transition-all duration-200">
+            </div>
+          </div>
+          <div>
+            <label for="city" class="block font-body text-sm font-600 text-gray-700 mb-1.5">City / Area</label>
+            <input type="text" id="city" name="city" placeholder="Peoria, East Peoria, Pekin..." class="w-full border border-gray-300 rounded-lg px-4 py-3 font-body text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent transition-all duration-200">
+          </div>
+          <div>
+            <label for="message" class="block font-body text-sm font-600 text-gray-700 mb-1.5">What needs to go?</label>
+            <textarea id="message" name="message" rows="3" placeholder="Old couch, refrigerator, garage cleanout..." class="w-full border border-gray-300 rounded-lg px-4 py-3 font-body text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent transition-all duration-200 resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-navy text-white font-heading font-700 text-lg py-4 rounded-xl hover:bg-navy-dark transition-colors duration-200 cursor-pointer shadow-md">
+            Send My Free Quote Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <footer class="bg-navy-dark text-blue-200 py-10">
     <div class="max-w-5xl mx-auto px-4">
       <div class="grid sm:grid-cols-3 gap-8 mb-8">
@@ -202,9 +250,9 @@
             <li><a href="/pekin.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Pekin, IL</a></li>
             <li><a href="/morton.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Morton, IL</a></li>
             <li><a href="/washington.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Washington, IL</a></li>
-            <li>Chillicothe, IL</li>
-            <li>Bartonville, IL</li>
-            <li>Dunlap, IL</li>
+            <li><a href="/chillicothe.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Chillicothe, IL</a></li>
+            <li><a href="/bartonville.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Bartonville, IL</a></li>
+            <li><a href="/dunlap.html" class="hover:text-orange transition-colors duration-200 cursor-pointer">Dunlap, IL</a></li>
           </ul>
         </div>
       </div>
