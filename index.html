@@ -77,12 +77,7 @@
       "opens": "07:00",
       "closes": "19:00"
     }],
-    "priceRange": "$$",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "48"
-    }
+    "priceRange": "$$"
   }
   </script>
 
@@ -139,10 +134,48 @@
       transform: translateY(-3px);
     }
 
+    /* Stats strip pop-in */
+    @keyframes stat-pop {
+      0%   { opacity: 0; transform: scale(0.6) translateY(10px); }
+      65%  { transform: scale(1.08) translateY(-2px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .stats-strip-item {
+      opacity: 0;
+    }
+    .stats-strip-item.popped {
+      animation: stat-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* Stats strip shimmer sweep */
+    @keyframes shimmer-sweep {
+      0%   { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(300%) skewX(-15deg); }
+    }
+    .stats-shimmer {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .stats-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -20%; height: 140%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      transform: translateX(-100%) skewX(-15deg);
+    }
+    .stats-shimmer.shimmer-go::after {
+      animation: shimmer-sweep 0.9s ease-in-out forwards;
+      animation-delay: 0.7s;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .phone-pulse { animation: none; }
       html { scroll-behavior: auto; }
       .fade-up, .fade-up-stagger > * { opacity: 1; transform: none; transition: none; }
+      .stats-strip-item { opacity: 1; }
     }
   </style>
   <script type="application/ld+json">
@@ -272,10 +305,6 @@
       <div class="flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm text-blue-100 font-body">
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-orange flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Same-Day Service Available
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-orange flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
           100% Free Estimates
         </div>
         <div class="flex items-center gap-2">
@@ -286,72 +315,30 @@
           <svg class="w-5 h-5 text-orange flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
           Eco-Friendly Disposal
         </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-orange flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Open 7 Days a Week
-        </div>
       </div>
     </div>
   </section>
 
   <!-- ── STATS STRIP ───────────────────────────────────────────── -->
-  <section class="bg-orange py-5" aria-label="Key stats">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-white fade-up-stagger">
-        <div>
-          <div id="stat-jobs" class="font-heading font-800 text-3xl">500+</div>
-          <div class="font-body text-sm text-orange-100">Jobs Completed</div>
+  <section class="relative bg-orange py-5" aria-label="Key stats" id="stats-strip">
+    <div class="stats-shimmer" aria-hidden="true"></div>
+    <div class="max-w-5xl mx-auto px-4 relative">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-white">
+        <div class="stats-strip-item">
+          <div class="font-heading font-800 text-3xl">8+</div>
+          <div class="font-body text-sm text-orange-100">Cities Served</div>
         </div>
-        <div>
-          <div id="stat-rating" class="font-heading font-800 text-3xl">4.9 ★</div>
-          <div class="font-body text-sm text-orange-100">Average Rating</div>
-        </div>
-        <div>
+        <div class="stats-strip-item">
           <div class="font-heading font-800 text-3xl">Same Day</div>
           <div class="font-body text-sm text-orange-100">Service Available</div>
         </div>
-        <div>
-          <div class="font-heading font-800 text-3xl">$0</div>
+        <div class="stats-strip-item">
+          <div class="font-heading font-800 text-3xl">7 Days</div>
+          <div class="font-body text-sm text-orange-100">A Week</div>
+        </div>
+        <div class="stats-strip-item">
+          <div class="font-heading font-800 text-3xl" id="stat-zero">$0</div>
           <div class="font-body text-sm text-orange-100">Cost to Get a Quote</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS ──────────────────────────────────────────── -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="text-center mb-12 fade-up">
-        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-3">How It Works</h2>
-        <p class="font-body text-gray-600 text-lg">Junk removal in Peoria, IL doesn't get simpler than this.</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8 fade-up-stagger">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-700 text-xl text-navy mb-2">1. Call or Get a Quote</h3>
-          <p class="font-body text-gray-600">Give us a call or fill out our quick form. We'll give you a free, no-obligation estimate right away.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-700 text-xl text-navy mb-2">2. We Show Up &amp; Load Up</h3>
-          <p class="font-body text-gray-600">Our crew arrives on time, works fast, and handles all the heavy lifting. You just point at what needs to go.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-700 text-xl text-navy mb-2">3. Done. Space Reclaimed.</h3>
-          <p class="font-body text-gray-600">We sweep up after ourselves and haul everything away. Your space is clean and the stress is gone.</p>
         </div>
       </div>
     </div>
@@ -434,11 +421,54 @@
     </div>
   </section>
 
+  <!-- ── HOW IT WORKS ──────────────────────────────────────────── -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-12 fade-up">
+        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-3">How It Works</h2>
+        <p class="font-body text-gray-600 text-lg">Junk removal in Peoria, IL doesn't get simpler than this.</p>
+      </div>
+      <div class="relative grid md:grid-cols-3 gap-8 fade-up-stagger" id="how-it-works-steps">
+        <!-- Animated connector line (desktop only) -->
+        <div class="hiw-connector hidden md:block absolute top-8 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-0.5 bg-gray-200 overflow-hidden" aria-hidden="true">
+          <div class="hiw-connector-fill h-full bg-orange origin-left scale-x-0 transition-transform duration-[1200ms] ease-out"></div>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-700 text-xl text-navy mb-2">1. Call or Get a Quote</h3>
+          <p class="font-body text-gray-600">Give us a call or fill out our quick form. We'll give you a free, no-obligation estimate right away.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-700 text-xl text-navy mb-2">2. We Show Up &amp; Load Up</h3>
+          <p class="font-body text-gray-600">Our crew arrives on time, works fast, and handles all the heavy lifting. You just point at what needs to go.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-700 text-xl text-navy mb-2">3. Done. Space Reclaimed.</h3>
+          <p class="font-body text-gray-600">We sweep up after ourselves and haul everything away. Your space is clean and the stress is gone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── WHY CHOOSE US ────────────────────────────────────────── -->
   <section class="py-16 bg-navy text-white">
     <div class="max-w-5xl mx-auto px-4">
       <div class="text-center mb-12 fade-up">
-        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-white mb-3">Why Peoria Chooses Us</h2>
+        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-white mb-3">Local, Honest, and Here When You Need Us</h2>
         <p class="font-body text-blue-200 text-lg max-w-2xl mx-auto">We're not a call center that dispatches a random crew. We're a local junk removal company that lives and works right here in the Peoria area.</p>
       </div>
       <div class="grid md:grid-cols-2 gap-10 fade-up">
@@ -454,74 +484,61 @@
     </div>
   </section>
 
-  <!-- ── TESTIMONIALS ──────────────────────────────────────────── -->
-  <section id="reviews" class="py-16 bg-gray-50">
+  <!-- ── WHY WE'RE DIFFERENT ─────────────────────────────────── -->
+  <section id="why-us" class="py-16 bg-gray-50">
     <div class="max-w-5xl mx-auto px-4">
       <div class="text-center mb-12 fade-up">
-        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-2">What Peoria Customers Say</h2>
-        <div class="flex justify-center items-center gap-1 mb-1" aria-label="4.9 out of 5 stars">
-          <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="font-body text-gray-500 text-sm">Rated 4.9 out of 5 — 48 reviews</p>
+        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-navy mb-3">Our Promise on Every Job</h2>
+        <p class="font-body text-gray-600 text-lg max-w-2xl mx-auto">Every customer gets the same standard — no exceptions, no matter the size of the job.</p>
       </div>
-      <div class="grid md:grid-cols-3 gap-6 fade-up-stagger">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-up-stagger">
 
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-lift">
-          <div class="flex gap-0.5 mb-3" aria-label="5 stars">
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm card-lift group">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange transition-colors duration-200">
+            <svg class="w-6 h-6 text-orange group-hover:text-white transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
           </div>
-          <p class="font-body text-gray-700 text-sm leading-relaxed mb-4">"Called at 9am and the truck was here by noon. Cleared out my entire garage in under two hours. No hassle, no surprise charges. Exactly what I needed."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center text-white font-heading font-600 text-sm flex-shrink-0" aria-hidden="true">MT</div>
-            <div>
-              <div class="font-heading font-600 text-navy text-sm">Mike T.</div>
-              <div class="font-body text-xs text-gray-400">Peoria, IL</div>
-            </div>
-          </div>
+          <h3 class="font-heading font-600 text-navy text-lg mb-2">Fully Insured</h3>
+          <p class="font-body text-gray-600 text-sm leading-relaxed">Every job is covered. Your home and property are protected from start to finish — no shortcuts, no liability on your end.</p>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-lift">
-          <div class="flex gap-0.5 mb-3" aria-label="5 stars">
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm card-lift group">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange transition-colors duration-200">
+            <svg class="w-6 h-6 text-orange group-hover:text-white transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
           </div>
-          <p class="font-body text-gray-700 text-sm leading-relaxed mb-4">"Used them for a full estate cleanout at my mother's house. Professional, respectful, and got everything hauled in one trip. Will absolutely use again."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center text-white font-heading font-600 text-sm flex-shrink-0" aria-hidden="true">SK</div>
-            <div>
-              <div class="font-heading font-600 text-navy text-sm">Sarah K.</div>
-              <div class="font-body text-xs text-gray-400">East Peoria, IL</div>
-            </div>
-          </div>
+          <h3 class="font-heading font-600 text-navy text-lg mb-2">Same-Day Service</h3>
+          <p class="font-body text-gray-600 text-sm leading-relaxed">Call before noon and we'll often be there that day. We know junk removal is rarely planned — so we make ourselves available when you need us most.</p>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-lift">
-          <div class="flex gap-0.5 mb-3" aria-label="5 stars">
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm card-lift group">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange transition-colors duration-200">
+            <svg class="w-6 h-6 text-orange group-hover:text-white transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
           </div>
-          <p class="font-body text-gray-700 text-sm leading-relaxed mb-4">"Same-day service, no nonsense. Finally got rid of the old washer, dryer, and couch I'd been meaning to move for months. Fair price and they swept up after."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center text-white font-heading font-600 text-sm flex-shrink-0" aria-hidden="true">DR</div>
-            <div>
-              <div class="font-heading font-600 text-navy text-sm">Dave R.</div>
-              <div class="font-body text-xs text-gray-400">Pekin, IL</div>
-            </div>
+          <h3 class="font-heading font-600 text-navy text-lg mb-2">Upfront Pricing</h3>
+          <p class="font-body text-gray-600 text-sm leading-relaxed">We give you a firm price before a single item gets moved. What we quote is what you pay — no add-ons, no surprise fees at the end of the job.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm card-lift group">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange transition-colors duration-200">
+            <svg class="w-6 h-6 text-orange group-hover:text-white transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21H5.71c.51-1.2 1.06-2.38 1.78-3.4C9.92 20.14 13 21.5 13 21.5c0-2.03-.85-3.83-2.5-5-1-.73-2.17-1.22-3.5-1.5 1.36-2 3.5-3.17 6-3.5V13l4-5z"/></svg>
           </div>
+          <h3 class="font-heading font-600 text-navy text-lg mb-2">Eco-Friendly Disposal</h3>
+          <p class="font-body text-gray-600 text-sm leading-relaxed">Before anything reaches the landfill, we sort for donation and recycling. Furniture, appliances, and usable items get a second life whenever possible.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm card-lift group">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange transition-colors duration-200">
+            <svg class="w-6 h-6 text-orange group-hover:text-white transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <h3 class="font-heading font-600 text-navy text-lg mb-2">We Do the Heavy Lifting</h3>
+          <p class="font-body text-gray-600 text-sm leading-relaxed">You don't need to move, bag, or prep anything. Point at what needs to go — our crew handles every bit of the physical work from start to finish.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm card-lift group">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange transition-colors duration-200">
+            <svg class="w-6 h-6 text-orange group-hover:text-white transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <h3 class="font-heading font-600 text-navy text-lg mb-2">Locally Based</h3>
+          <p class="font-body text-gray-600 text-sm leading-relaxed">We're not a national chain dispatching a random crew. We're a local Peoria-area business — when you call, you reach someone who knows your neighborhood.</p>
         </div>
 
       </div>
@@ -663,7 +680,7 @@
   <section id="contact" class="py-16 bg-navy">
     <div class="max-w-3xl mx-auto px-4">
       <div class="text-center mb-10">
-        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-white mb-3">Get a Free Quote — Peoria, IL</h2>
+        <h2 class="font-heading font-700 text-3xl sm:text-4xl text-white mb-3">Get Your Free Peoria Junk Removal Quote</h2>
         <p class="font-body text-blue-200">No obligation. No credit card. Just a fast, free quote from your local Peoria junk removal team.</p>
       </div>
 
@@ -771,31 +788,55 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up, .fade-up-stagger').forEach(el => observer.observe(el));
 
-    // Counter animation for stats strip
-    function animateCounter(el, target, suffix, duration) {
-      const isDecimal = target % 1 !== 0;
-      const start = performance.now();
-      const update = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        const value = isDecimal ? (ease * target).toFixed(1) : Math.floor(ease * target);
-        el.textContent = value + suffix;
-        if (progress < 1) requestAnimationFrame(update);
-      };
-      requestAnimationFrame(update);
+    // Stats strip: pop-in stagger + shimmer + $0 countdown
+    const statsStrip = document.getElementById('stats-strip');
+    if (statsStrip) {
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            // Pop-in each stat with staggered delay
+            statsStrip.querySelectorAll('.stats-strip-item').forEach((el, i) => {
+              el.style.animationDelay = (i * 0.12) + 's';
+              el.classList.add('popped');
+            });
+            // Shimmer sweep after items have popped in
+            statsStrip.querySelector('.stats-shimmer').classList.add('shimmer-go');
+            // $0 countdown from 99
+            const zeroEl = document.getElementById('stat-zero');
+            if (zeroEl) {
+              const start = performance.now();
+              const duration = 1000;
+              const tick = (now) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 2);
+                const val = Math.round(99 - ease * 99);
+                zeroEl.textContent = '$' + val;
+                if (progress < 1) requestAnimationFrame(tick);
+              };
+              requestAnimationFrame(tick);
+            }
+            statsObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+      statsObserver.observe(statsStrip);
     }
 
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          animateCounter(document.getElementById('stat-jobs'), 500, '+', 2500);
-          animateCounter(document.getElementById('stat-rating'), 4.9, ' ★', 2500);
-          statsObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
-    const statsSection = document.querySelector('[aria-label="Key stats"]');
-    if (statsSection) statsObserver.observe(statsSection);
+    // How It Works connector line animation
+    const hiwSteps = document.getElementById('how-it-works-steps');
+    if (hiwSteps) {
+      const lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const fill = hiwSteps.querySelector('.hiw-connector-fill');
+            if (fill) fill.style.transform = 'scaleX(1)';
+            lineObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      lineObserver.observe(hiwSteps);
+    }
+
   </script>
 
   <!-- ── FAQ JS ─────────────────────────────────────────────────── -->
