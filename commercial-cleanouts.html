@@ -54,6 +54,22 @@
       html { scroll-behavior: auto; }
       .fade-up, .fade-up-stagger > * { opacity:1; transform:none; transition:none; }
     }
+  
+    /* How It Works connector line */
+    @keyframes hiw-draw {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .hiw-connector-fill {
+      height: 100%;
+      background: #F97316;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s ease-out;
+    }
+    .hiw-steps.connected .hiw-connector-fill {
+      transform: scaleX(1);
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -140,27 +156,44 @@
       <h2 class="fade-up font-heading font-700 text-3xl text-navy text-center mb-3">Commercial Properties We Serve</h2>
       <p class="fade-up font-body text-gray-500 text-center mb-10">From small offices to large commercial spaces — we handle it all.</p>
       <div class="fade-up-stagger grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Office Cleanouts</h3>
           <p class="font-body text-sm text-gray-500">Desks, chairs, filing cabinets, cubicle systems, electronics — cleared fast.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:border-ora
+nge">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-4c0-1.1.9-2 2-2s2 .9 2 2h-4zm4 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Retail Stores</h3>
           <p class="font-body text-sm text-gray-500">Shelving, fixtures, display cases, and old inventory hauled away.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:bord
+er-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Restaurants &amp; Kitchens</h3>
           <p class="font-body text-sm text-gray-500">Old commercial kitchen equipment, furniture, and fixtures removed.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hove
+r:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 21V7L12 3 2 7v14h5v-9h10v9h5zm-7 0h-2v-3h2v3zm-4 0H9v-3h2v3z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Warehouses</h3>
           <p class="font-body text-sm text-gray-500">Racking, pallets, machinery, and excess inventory cleared out.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-ligh
+t hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Rental Properties</h3>
           <p class="font-body text-sm text-gray-500">Tenant move-out cleanouts — furniture, debris, and leftover junk gone.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-nav
+y-light hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Medical &amp; Professional</h3>
           <p class="font-body text-sm text-gray-500">Exam tables, office equipment, waiting room furniture, and more.</p>
         </div>

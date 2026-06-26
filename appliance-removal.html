@@ -54,6 +54,22 @@
       html { scroll-behavior: auto; }
       .fade-up, .fade-up-stagger > * { opacity:1; transform:none; transition:none; }
     }
+  
+    /* How It Works connector line */
+    @keyframes hiw-draw {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .hiw-connector-fill {
+      height: 100%;
+      background: #F97316;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s ease-out;
+    }
+    .hiw-steps.connected .hiw-connector-fill {
+      transform: scaleX(1);
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -140,27 +156,44 @@
       <h2 class="fade-up font-heading font-700 text-3xl text-navy text-center mb-3">Appliances We Remove</h2>
       <p class="fade-up font-body text-gray-500 text-center mb-10">Heavy, bulky, hard-to-move — we take them all.</p>
       <div class="fade-up-stagger grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2H7C5.9 2 5 2.9 5 4v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 8H7V4h10v6zm0 10H7v-8h10v8zM9 5h2v4H9V5zm0 9h2v3H9v-3z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Refrigerators &amp; Freezers</h3>
           <p class="font-body text-sm text-gray-500">All sizes — side-by-side, French door, upright freezers.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:border-ora
+nge">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2.01L6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-1.99zM18 20H6V4h12v16zm-6-2c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Washers &amp; Dryers</h3>
           <p class="font-body text-sm text-gray-500">Top-load, front-load, stackable units — removed as a pair or separately.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:bord
+er-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 11h-1V9h-2v2h-1V9H9v2H8V9H6v2H5c-1.1 0-2 .9-2 2v6h18v-6c0-1.1-.9-2-2-2zm-3 7H10v-3h4v3zm4-3h-2v-1H8v1H6v-3h12v3z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Stoves &amp; Ovens</h3>
           <p class="font-body text-sm text-gray-500">Gas or electric ranges, wall ovens, and cooktops.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hove
+r:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Dishwashers</h3>
           <p class="font-body text-sm text-gray-500">Built-in or freestanding dishwashers carefully removed.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-ligh
+t hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 12H5V6h14v10zm-7-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Microwaves</h3>
           <p class="font-body text-sm text-gray-500">Over-the-range, countertop, or built-in microwave units.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-nav
+y-light hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Water Heaters</h3>
           <p class="font-body text-sm text-gray-500">Old tank water heaters disconnected and hauled away.</p>
         </div>

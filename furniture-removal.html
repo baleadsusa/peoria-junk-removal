@@ -64,6 +64,22 @@
       html { scroll-behavior: auto; }
       .fade-up, .fade-up-stagger > * { opacity:1; transform:none; transition:none; }
     }
+  
+    /* How It Works connector line */
+    @keyframes hiw-draw {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .hiw-connector-fill {
+      height: 100%;
+      background: #F97316;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s ease-out;
+    }
+    .hiw-steps.connected .hiw-connector-fill {
+      transform: scaleX(1);
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -153,27 +169,44 @@
       <h2 class="fade-up font-heading font-700 text-3xl text-navy text-center mb-3">Furniture We Remove</h2>
       <p class="fade-up font-body text-gray-500 text-center mb-10">If you can point to it, we can haul it.</p>
       <div class="fade-up-stagger grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 9V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v2c-1.1 0-2 .9-2 2v5h1.33L3 17h1l.67-1h14.67l.66 1h1l-.33-1H23v-5c0-1.1-.9-2-2-2zm-10 0H5V7h6v2zm8 0h-6V7h6v2z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Sofas &amp; Sectionals</h3>
           <p class="font-body text-sm text-gray-500">Full sectionals, loveseats, pull-out sleeper sofas — all sizes.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:border-ora
+nge">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Beds &amp; Mattresses</h3>
           <p class="font-body text-sm text-gray-500">Bed frames, box springs, mattresses — we take them together or separate.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hover:bord
+er-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM4 11h7v2H4v-2zm0 7V15h7v3H4zm9 0v-3h7v3h-7zm7-7h-7V9h7v2zm0-4H4V4h16v3z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Dressers &amp; Wardrobes</h3>
           <p class="font-body text-sm text-gray-500">Heavy wooden dressers, armoires, and wardrobes — no problem.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-light hove
+r:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.5 3H6c-1.1 0-2 .9-2 2v5.71c0 3.83 2.95 7.18 6.78 7.29 3.96.12 7.22-3.06 7.22-7V5c0-1.1-.9-2-2-2zm-5 8v3h-2v-3H9l3-6 3 6h-1.5zM4 19h16v2H4z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Dining &amp; Kitchen Tables</h3>
           <p class="font-body text-sm text-gray-500">Tables and chairs, bookcases, shelving units.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-navy-ligh
+t hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12V5c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v7c-1.1 0-2 .9-2 2v6h2v1h2v-1h8v1h2v-1h2v-6c0-1.1-.9-2-2-2zm-2-7v7h-5V5h5zm-7 0v7H7V5h3zm-3 9h10v4H7v-4z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Recliners &amp; Chairs</h3>
           <p class="font-body text-sm text-gray-500">Recliners, office chairs, accent chairs, ottomans.</p>
         </div>
-        <div class="card-lift bg-white rounded-xl p-5 border border-navy-light hover:border-orange">
+        <div class="card-lift group bg-white rounded-xl p-5 border border-nav
+y-light hover:border-orange">
+          
+          <div class="w-10 h-10 bg-navy/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-navy transition-colors duration-200"><svg class="w-5 h-5 text-navy group-hover:text-orange transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div>
           <h3 class="font-heading font-600 text-navy mb-1">Desks &amp; Office Furniture</h3>
           <p class="font-body text-sm text-gray-500">Home office desks, filing cabinets, credenzas.</p>
         </div>
@@ -185,7 +218,8 @@
   <section class="py-16 px-4 bg-gray-50">
     <div class="max-w-4xl mx-auto">
       <h2 class="fade-up font-heading font-700 text-3xl text-navy text-center mb-10">How Furniture Removal Works</h2>
-      <div class="fade-up-stagger grid sm:grid-cols-3 gap-8 text-center">
+      <div class="fade-up-stagger hiw-steps grid sm:grid-cols-3 gap-8 text-center" style="position:relative">
+        <div class="hidden sm:block" style="position:absolute;top:1.5rem;left:calc(16.67% + 1.5rem);right:calc(16.67% + 1.5rem);height:2px;background:#e5e7eb;overflow:hidden;" aria-hidden="true"><div class="hiw-connector-fill"></div></div>
         <div>
           <div class="w-12 h-12 bg-orange text-white rounded-full flex items-center justify-center font-heading font-700 text-xl mx-auto mb-4">1</div>
           <h3 class="font-heading font-600 text-navy mb-2">Call or Get a Quote</h3>
