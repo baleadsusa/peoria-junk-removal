@@ -13,6 +13,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const hiwEl = document.querySelector('.hiw-steps');
+    if (hiwEl) {
+      const hiwObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('connected'); hiwObs.disconnect(); } });
+      }, { threshold: 0.4 });
+      hiwObs.observe(hiwEl);
+    }
+  });
+</script>
+  <script>
     tailwind.config = {
       theme: {
         extend: {

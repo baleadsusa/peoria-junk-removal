@@ -181,11 +181,16 @@
       animation-delay: 0.7s;
     }
 
+    /* How It Works connector line */
+    .hiw-connector-fill { transform: scaleX(0); transform-origin: left; transition: transform 1.2s ease-out; }
+    #how-it-works-steps.connected .hiw-connector-fill { transform: scaleX(1); }
+
     @media (prefers-reduced-motion: reduce) {
       .phone-pulse { animation: none; }
       html { scroll-behavior: auto; }
       .fade-up, .fade-up-stagger > * { opacity: 1; transform: none; transition: none; }
       .stats-strip-item { opacity: 1; }
+      .hiw-connector-fill { transition: none; }
     }
   </style>
   <script type="application/ld+json">
@@ -442,7 +447,7 @@
       <div class="relative grid md:grid-cols-3 gap-8 fade-up-stagger" id="how-it-works-steps">
         <!-- Animated connector line (desktop only) -->
         <div class="hiw-connector hidden md:block absolute top-8 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-0.5 bg-gray-200 overflow-hidden" aria-hidden="true">
-          <div class="hiw-connector-fill h-full bg-orange origin-left scale-x-0 transition-transform duration-[1200ms] ease-out"></div>
+          <div class="hiw-connector-fill h-full bg-orange"></div>
         </div>
         <div class="text-center">
           <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -845,8 +850,7 @@
       const lineObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            const fill = hiwSteps.querySelector('.hiw-connector-fill');
-            if (fill) fill.style.transform = 'scaleX(1)';
+            hiwSteps.classList.add('connected');
             lineObserver.disconnect();
           }
         });
