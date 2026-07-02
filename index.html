@@ -8,6 +8,11 @@
   <meta name="keywords" content="junk removal Peoria IL, junk hauling Peoria, trash removal Peoria, rubbish removal Peoria IL, haul away junk Peoria, garbage removal Peoria, debris removal Peoria, junk pickup near me Peoria, furniture removal Peoria, appliance removal Peoria IL, same day junk removal Peoria, cleanout service Peoria, 1-800-GOT-JUNK alternative Peoria, dumpster alternative Peoria">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.peoriajunkexperts.com/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#1E3A5F">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Junk Removal Peoria IL | Fast, Affordable, Same-Day">
@@ -15,7 +20,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.peoriajunkexperts.com/">
   <meta property="og:image" content="https://www.peoriajunkexperts.com/images/hero-east-peoria.webp">
-  <meta property="og:site_name" content="Peoria Junk Removal">
+  <meta property="og:site_name" content="Peoria Junk Experts">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Junk Removal Peoria IL | Fast, Affordable, Same-Day">
@@ -25,26 +30,11 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700;800&display=swap"></noscript>
 
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: { DEFAULT: '#1E3A5F', dark: '#152D4A', light: '#2A4D7A' },
-            orange: { DEFAULT: '#F97316', dark: '#EA6C0A' }
-          },
-          fontFamily: {
-            heading: ['Poppins', 'sans-serif'],
-            body: ['Open Sans', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="/styles.css">
 
   <!-- Local Business Schema -->
   <script type="application/ld+json">
@@ -52,7 +42,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://www.peoriajunkexperts.com",
-    "name": "Peoria Junk Removal",
+    "name": "Peoria Junk Experts",
     "description": "Professional junk removal and hauling services in Peoria, IL and surrounding areas. Same-day service available 7 days a week. Furniture, appliances, trash, yard waste, construction debris, and full property cleanouts.",
     "image": "https://www.peoriajunkexperts.com/images/hero-east-peoria.webp",
     "telephone": "(309) 240-2323",
@@ -227,7 +217,7 @@
       "name": "What items will you NOT remove?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We can\'t take hazardous materials like paint, chemicals, asbestos, medical waste, car batteries, or propane tanks. For everything else — furniture, appliances, electronics, yard waste, construction debris — we\'re your team."
+        "text": "We can't take hazardous materials like paint, chemicals, asbestos, medical waste, car batteries, or propane tanks. For everything else — furniture, appliances, electronics, yard waste, construction debris — we're your team."
       }
     },
     {
@@ -243,7 +233,7 @@
       "name": "Do I need to be home for the pickup?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not always. If the items are accessible from outside — driveway, yard, garage — we can often complete the job without you present. We\'ll confirm the details when you book."
+        "text": "Not always. If the items are accessible from outside — driveway, yard, garage — we can often complete the job without you present. We'll confirm the details when you book."
       }
     }
     ]
@@ -255,9 +245,12 @@
   <!-- ── STICKY NAV ───────────────────────────────────────────── -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-dark shadow-lg">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="min-w-0">
-        <span class="font-heading font-700 text-white text-lg leading-none">Peoria Junk Removal</span>
-        <p class="hidden sm:block font-body text-blue-300 text-xs mt-0.5">Peoria, IL &amp; Surrounding Areas</p>
+      <div class="flex items-center gap-2 min-w-0">
+        <svg class="h-8 w-8 flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><text x="20" y="27" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="20"><tspan fill="#ffffff">P</tspan><tspan fill="#F97316">J</tspan><tspan fill="#ffffff">E</tspan></text></svg>
+        <span class="min-w-0">
+          <span class="block font-heading font-700 text-white text-lg leading-none">Peoria Junk Experts</span>
+          <span class="hidden sm:block font-body text-blue-300 text-xs mt-0.5">Peoria, IL &amp; Surrounding Areas</span>
+        </span>
       </div>
       <a href="tel:3092402323"
          class="phone-pulse flex items-center gap-2 bg-orange text-white font-heading font-600 text-sm sm:text-base px-4 py-2.5 rounded-lg hover:bg-orange-dark transition-colors duration-200 cursor-pointer">
@@ -269,6 +262,8 @@
       </a>
     </div>
   </nav>
+
+  <main>
 
   <!-- ── HERO ─────────────────────────────────────────────────── -->
   <section id="hero" class="relative bg-navy pt-24 pb-20 overflow-hidden">
@@ -759,11 +754,16 @@
   </section>
 
   <!-- ── FOOTER ────────────────────────────────────────────────── -->
+  </main>
+
   <footer class="bg-navy-dark text-blue-200 py-10">
     <div class="max-w-5xl mx-auto px-4">
       <div class="grid sm:grid-cols-3 gap-8 mb-8">
         <div>
-          <h3 class="font-heading font-700 text-white text-lg mb-3">Peoria Junk Removal</h3>
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="h-8 w-8 flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><text x="20" y="27" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="20"><tspan fill="#ffffff">P</tspan><tspan fill="#F97316">J</tspan><tspan fill="#ffffff">E</tspan></text></svg>
+            <h3 class="font-heading font-700 text-white text-lg">Peoria Junk Experts</h3>
+          </div>
           <p class="font-body text-sm text-blue-300 mb-4">Professional junk removal in Peoria, IL and surrounding areas. Fast, affordable, and reliable.</p>
           <a href="tel:3092402323" class="font-heading font-600 text-orange hover:text-orange-dark transition-colors duration-200 cursor-pointer block">(309) 240-2323</a>
           <span class="font-body text-sm">Peoria, IL 61602</span>
@@ -796,7 +796,7 @@
       </div>
       <hr class="border-navy-light mb-6">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs font-body text-blue-400">
-        <p>&copy; 2026 Peoria Junk Removal. All rights reserved. Serving Peoria, IL and surrounding areas.</p>
+        <p>&copy; 2026 Peoria Junk Experts. All rights reserved. Serving Peoria, IL and surrounding areas.</p>
         <p>Locally owned &amp; operated &mdash; proudly serving Peoria and central Illinois.</p>
       </div>
     </div>

@@ -7,28 +7,21 @@
   <meta name="description" content="Fast junk removal in Morton, IL. Furniture, appliances, estate cleanouts & more. Same-day service available. Free estimates. Call (309) 240-2323.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.peoriajunkexperts.com/morton.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#1E3A5F">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: { DEFAULT: '#1E3A5F', dark: '#152D4A', light: '#2A4D7A' },
-            orange: { DEFAULT: '#F97316', dark: '#EA6C0A' }
-          },
-          fontFamily: { heading: ['Poppins','sans-serif'], body: ['Open Sans','sans-serif'] }
-        }
-      }
-    }
-  </script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Peoria Junk Removal",
+    "name": "Peoria Junk Experts",
     "description": "Professional junk removal serving Morton, IL and surrounding areas.",
     "telephone": "+13092402323",
     "areaServed": { "@type": "City", "name": "Morton", "containedInPlace": { "@type": "State", "name": "Illinois" } },
@@ -82,7 +75,7 @@
       "name": "How far in advance do I need to schedule?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Often same-day or next-day. Call us and we\'ll tell you the earliest available slot. For large jobs we appreciate a day\'s notice, but we always try to accommodate urgent requests."
+        "text": "Often same-day or next-day. Call us and we'll tell you the earliest available slot. For large jobs we appreciate a day's notice, but we always try to accommodate urgent requests."
       }
     },
     {
@@ -90,15 +83,15 @@
       "name": "Do you handle items in hard-to-reach places?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — attics, basements, tight garages, second floors. Our team does all the heavy lifting so you don\'t have to."
+        "text": "Yes — attics, basements, tight garages, second floors. Our team does all the heavy lifting so you don't have to."
       }
     },
     {
       "@type": "Question",
-      "name": "What if I\'m not sure what can be removed?",
+      "name": "What if I'm not sure what can be removed?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Just call and describe what you have — we\'ll tell you right away. We can\'t take hazardous materials like chemicals or paint, but almost everything else is fair game."
+        "text": "Just call and describe what you have — we'll tell you right away. We can't take hazardous materials like chemicals or paint, but almost everything else is fair game."
       }
     },
     {
@@ -106,7 +99,7 @@
       "name": "Are you licensed and insured?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, fully insured. You\'re protected in the unlikely event of any property damage during the job."
+        "text": "Yes, fully insured. You're protected in the unlikely event of any property damage during the job."
       }
     }
     ,
@@ -115,7 +108,7 @@
       "name": "Can you help clear out a home in Morton before a sale or move?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — we work with Morton homeowners, realtors, and sellers regularly. We can clear out a home quickly so it\'s ready to list or hand over to new owners. Call us and we\'ll schedule around your timeline."
+        "text": "Yes — we work with Morton homeowners, realtors, and sellers regularly. We can clear out a home quickly so it's ready to list or hand over to new owners. Call us and we'll schedule around your timeline."
       }
     }
     
@@ -137,16 +130,21 @@
   <!-- NAV -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-dark shadow-lg">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="min-w-0">
-        <a href="/" class="font-heading font-700 text-white text-lg leading-none hover:text-orange transition-colors duration-200 cursor-pointer">Peoria Junk Removal</a>
-        <p class="hidden sm:block font-body text-blue-300 text-xs mt-0.5">Peoria, IL &amp; Surrounding Areas</p>
-      </div>
+      <a href="/" class="flex items-center gap-2 min-w-0 group">
+        <svg class="h-8 w-8 flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><text x="20" y="27" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="20"><tspan fill="#ffffff">P</tspan><tspan fill="#F97316">J</tspan><tspan fill="#ffffff">E</tspan></text></svg>
+        <span class="min-w-0">
+          <span class="block font-heading font-700 text-white text-lg leading-none group-hover:text-orange transition-colors duration-200">Peoria Junk Experts</span>
+          <span class="hidden sm:block font-body text-blue-300 text-xs mt-0.5">Peoria, IL &amp; Surrounding Areas</span>
+        </span>
+      </a>
       <a href="tel:3092402323" class="phone-pulse flex items-center gap-2 bg-orange text-white font-heading font-600 text-sm sm:text-base px-4 py-2.5 rounded-lg hover:bg-orange-dark transition-colors duration-200 cursor-pointer">
         <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         (309) 240-2323
       </a>
     </div>
   </nav>
+
+  <main>
 
   <!-- HERO -->
   <section class="bg-navy text-white pt-24 pb-16 px-4 text-center">
@@ -344,11 +342,16 @@
     </div>
   </section>
 
+  </main>
+
   <footer class="bg-navy-dark text-blue-200 py-10">
     <div class="max-w-5xl mx-auto px-4">
       <div class="grid sm:grid-cols-3 gap-8 mb-8">
         <div>
-          <h3 class="font-heading font-700 text-white text-lg mb-3">Peoria Junk Removal</h3>
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="h-8 w-8 flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><text x="20" y="27" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="20"><tspan fill="#ffffff">P</tspan><tspan fill="#F97316">J</tspan><tspan fill="#ffffff">E</tspan></text></svg>
+            <h3 class="font-heading font-700 text-white text-lg">Peoria Junk Experts</h3>
+          </div>
           <p class="font-body text-sm text-blue-300 mb-4">Professional junk removal in Peoria, IL and surrounding areas. Fast, affordable, and reliable.</p>
           <a href="tel:3092402323" class="font-heading font-600 text-orange hover:text-orange-dark transition-colors duration-200 cursor-pointer block">(309) 240-2323</a>
           <span class="font-body text-sm">Peoria, IL 61602</span>
@@ -381,7 +384,7 @@
       </div>
       <hr class="border-navy-light mb-6">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs font-body text-blue-400">
-        <p>&copy; 2026 Peoria Junk Removal. All rights reserved.</p>
+        <p>&copy; 2026 Peoria Junk Experts. All rights reserved.</p>
         <p>Locally owned &amp; operated &mdash; proudly serving Peoria and central Illinois.</p>
       </div>
     </div>

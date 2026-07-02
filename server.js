@@ -8,7 +8,8 @@ const DIR = __dirname;
 const types = {
   '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
   '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg',
-  '.svg': 'image/svg+xml', '.xml': 'application/xml', '.txt': 'text/plain'
+  '.svg': 'image/svg+xml', '.xml': 'application/xml', '.txt': 'text/plain',
+  '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json', '.json': 'application/json'
 };
 
 http.createServer((req, res) => {
